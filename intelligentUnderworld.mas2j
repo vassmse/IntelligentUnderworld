@@ -1,0 +1,22 @@
+MAS intelligentUnderworld {
+
+	infrastructure: Centralised
+
+	environment: Tartarus
+
+	agents:		
+		//gateChecker #3;
+		asphodelus gateChecker.asl; //natural deads
+		mourning gateChecker.asl; //bad deads
+		elysium gateChecker.asl; //good deads
+		
+		runawaySensor;
+		semidarknessSensor #3;
+		temperatureSensor #3;
+		classifierCreature;
+		cerberus;
+		dead;
+
+	aslSourcePath:
+		"src/asl";
+}
