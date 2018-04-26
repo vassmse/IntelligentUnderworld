@@ -8,9 +8,7 @@ MAS intelligentUnderworld {
 		//gateChecker #3;
 		asphodelus gateChecker.asl; //natural deads
 		mourning gateChecker.asl; //bad deads
-		elysium gateChecker.asl; //good deads		
-		semidarknessSensor #3;
-		temperatureSensor #3;
+		elysium gateChecker.asl; //good deads	
 		classifierCreature;
 		cerberus;
 		dead;

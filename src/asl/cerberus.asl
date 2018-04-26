@@ -2,11 +2,13 @@
 // Cerberus guards the gate of the underworld
 
 /* Initial beliefs and rules */
+//escape(false).
 
 /* Initial goals */
 
-!start.
 
 /* Plans */
 
-+!start : true <- .print("hello world.").
++visitor[source(dead)]
+	<- .print("You can enter the Underworld.");
+	   .send(dead,achieve,move(classifier)).

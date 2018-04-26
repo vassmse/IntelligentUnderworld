@@ -3,10 +3,14 @@
 
 /* Initial beliefs and rules */
 
+
 /* Initial goals */
 
-!start.
+//!classify.
+
 
 /* Plans */
 
-+!start : true <- .print("hello world.").
++visitor[source(dead)]
+	<- .print("Hmm... thinking...").
+
