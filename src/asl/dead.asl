@@ -11,17 +11,17 @@ position(gate).
 
 /* Plans */
 
-+!move(cerberus) : position(gate)
-	<- .print("Hi Cerberus, please let me in.");
-	   -position(gate);
++!move(cerberus) : position(gate)	 
+	<- -position(gate);
 	   +position(cerberus);
+	   .print("Hi Cerberus, please let me in.");
 	   .send(cerberus,tell,visitor);.
    
  +!move(classifier)[source(cerberus)] : position(cerberus)
-	<- .print("Hi Classifier Creature, where should I go?");
+	<- -position(cerberus);
 	   +position(classifier);
-	   -position(cerberus);
-	   .send(classifierCreature,tell,visitor(bad));. //TODO: Átrendezni logikusan a cselekvéseket
+	   .print("Hi Classifier Creature, where should I go?");
+	   .send(classifierCreature,tell,visitor(bad));.
 	   
 +!move(mourning)[source(classifierCreature)] : position(classifier)
 	<-  -position(classifier);
@@ -29,4 +29,4 @@ position(gate).
 	    .print("Morning, Mourning Gate Checker. Let me in.");
 	    .send(mourning,tell,visitor(bad)).
 +arrived(X):true
-	<- .print("I arrived to ",X).
+	<- .print("I arrived to ",X,". I will be there forever.").
