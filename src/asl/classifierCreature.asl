@@ -11,6 +11,7 @@
 
 /* Plans */
 
-+visitor[source(dead)]
-	<- .print("Hmm... thinking...").
-
++visitor(bad)[source(dead)]		
+	<- .print("You should go to the MOURNING section, you are a bad dead."); //TODO: Szóljon a gatechackernek is
+	   .send(dead, achieve, move(mourning)).
+ 

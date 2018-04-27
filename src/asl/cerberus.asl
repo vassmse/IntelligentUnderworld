@@ -11,4 +11,4 @@
 
 +visitor[source(dead)]
 	<- .print("You can enter the Underworld.");
-	   .send(dead,achieve,move(classifier)).
+	   .send(dead,achieve,move(classifier)). //TODO: szóljon a classifiernek

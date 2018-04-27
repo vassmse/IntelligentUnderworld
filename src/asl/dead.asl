@@ -4,10 +4,10 @@
 /* Initial beliefs and rules */
 
 position(gate).
+~arrived(destination).
 
 /* Initial goals */
 !move(cerberus).
-
 
 /* Plans */
 
@@ -21,4 +21,12 @@ position(gate).
 	<- .print("Hi Classifier Creature, where should I go?");
 	   +position(classifier);
 	   -position(cerberus);
-	   .send(classifierCreature,tell,visitor);.
+	   .send(classifierCreature,tell,visitor(bad));. //TODO: Átrendezni logikusan a cselekvéseket
+	   
++!move(mourning)[source(classifierCreature)] : position(classifier)
+	<-  -position(classifier);
+	    +position(mourning);
+	    .print("Morning, Mourning Gate Checker. Let me in.");
+	    .send(mourning,tell,visitor(bad)).
++arrived(X):true
+	<- .print("I arrived to ",X).
