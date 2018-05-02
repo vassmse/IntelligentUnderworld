@@ -1,14 +1,12 @@
 // Agent cerberus in project intelligentHell
-// Cerberus guards the gate of the underworld
-
-/* Initial beliefs and rules */
-//escape(false).
-
-/* Initial goals */
+// Cerberus guards the gate of the Underworld
 
 
 /* Plans */
 
-+visitor[source(dead)]
++visitor(in)[source(dead)]
 	<- .print("You can enter the Underworld.");
-	   .send(dead,achieve,move(classifier)). //TODO: szóljon a classifiernek
+	   .send(dead,achieve,move(classifier)).
+	   
++visitor(out)[source(dead)]
+	<- .print("You can NOT leave the Underworld.").

@@ -5,7 +5,6 @@ MAS intelligentUnderworld {
 	environment: Tartarus
 
 	agents:		
-		//gateChecker #3;
 		asphodelus gateChecker.asl; //natural deads
 		mourning gateChecker.asl; //bad deads
 		elysium gateChecker.asl; //good deads	
