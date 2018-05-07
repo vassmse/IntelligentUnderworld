@@ -10,14 +10,10 @@ import jason.environment.grid.Location;
 
 public class TartarusView extends GridWorldView{
 
-	/**
-	 * 
-	 */
-	//kell hogy ne warningoljon
 	private static final long serialVersionUID = 1L;
-	
-	
+		
 	TartarusModel tartarusModel;
+	
 	public TartarusView(TartarusModel model) {
 		super(model, "Intelligent Underworld", 700);
 		tartarusModel = model;
@@ -30,44 +26,45 @@ public class TartarusView extends GridWorldView{
 	@Override
 	public void draw(Graphics g, int x, int y, int object) {
 		Location lDead = tartarusModel.getAgPos(0);
-		super.drawAgent(g, x, y, Color.lightGray, -1);
+		super.drawAgent(g, x, y, Color.red, -1);
+		
 		switch(object) {
-		case TartarusModel.CERBERUS:
-			if(lDead.equals(tartarusModel.lCerberus)) {
-				super.drawAgent(g, x, y, Color.yellow, -1);
+			case TartarusModel.CERBERUS:
+				if(lDead.equals(tartarusModel.lCerberus)) {
+					super.drawAgent(g, x, y, Color.yellow, -1);
+				}
+				g.setColor(Color.BLACK);
+				drawString(g, x, y, defaultFont, "Cerberus");
+				break;
+			case TartarusModel.CLASSIFIER_CREATURE:
+				if(lDead.equals(tartarusModel.lClassifierCreature)) {
+					super.drawAgent(g, x, y, Color.yellow, -1);			
+				}
+				g.setColor(Color.BLACK);
+				drawString(g, x, y, defaultFont, "ClassifierCreature");
+				break;
+			case TartarusModel.GATECHECKER_ELYSIUM:
+				if(lDead.equals(tartarusModel.lGateCheckerElysium)) {
+					super.drawAgent(g, x, y, Color.yellow, -1);			
+				}
+				g.setColor(Color.BLACK);
+				drawString(g, x, y, defaultFont, "Elysium GateChecker");
+				break;
+			case TartarusModel.GATECHECKER_ASPHODELUS:
+				if(lDead.equals(tartarusModel.lGateCheckerAsphodelus)) {
+					super.drawAgent(g, x, y, Color.yellow, -1);			
+				}
+				g.setColor(Color.BLACK);
+				drawString(g, x, y, defaultFont, "Asphodelus GateChecker");
+				break;
+			case TartarusModel.GATECHECKER_MOURNING:
+				if(lDead.equals(tartarusModel.lGateCheckerMourning)) {
+					super.drawAgent(g, x, y, Color.yellow, -1);			
+				}
+				g.setColor(Color.BLACK);
+				drawString(g, x, y, defaultFont, "Mourning GateChecker");
+				break;
 			}
-			g.setColor(Color.BLACK);
-			drawString(g, x, y, defaultFont, "Cerberus");
-			break;
-		case TartarusModel.CLASSIFIER_CREATURE:
-			if(lDead.equals(tartarusModel.lClassifierCreature)) {
-				super.drawAgent(g, x, y, Color.yellow, -1);			
-			}
-			g.setColor(Color.BLACK);
-			drawString(g, x, y, defaultFont, "ClassifierCreature");
-			break;
-		case TartarusModel.GATECHECKER_ELYSIUM:
-			if(lDead.equals(tartarusModel.lGateCheckerElysium)) {
-				super.drawAgent(g, x, y, Color.yellow, -1);			
-			}
-			g.setColor(Color.BLACK);
-			drawString(g, x, y, defaultFont, "Elysium GateChecker");
-			break;
-		case TartarusModel.GATECHECKER_ASPHODELUS:
-			if(lDead.equals(tartarusModel.lGateCheckerAsphodelus)) {
-				super.drawAgent(g, x, y, Color.yellow, -1);			
-			}
-			g.setColor(Color.BLACK);
-			drawString(g, x, y, defaultFont, "Asphodelus GateChecker");
-			break;
-		case TartarusModel.GATECHECKER_MOURNING:
-			if(lDead.equals(tartarusModel.lGateCheckerMourning)) {
-				super.drawAgent(g, x, y, Color.yellow, -1);			
-			}
-			g.setColor(Color.BLACK);
-			drawString(g, x, y, defaultFont, "Mourning GateChecker");
-			break;
-		}
 		
 	}
 	

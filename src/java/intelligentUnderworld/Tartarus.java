@@ -29,27 +29,7 @@ public class Tartarus extends Environment {
     	model = new TartarusModel();
         view  = new TartarusView(model);
         model.setView(view);
-        updatePercepts();
-    	
-//    	model= new TartarusModel();
-//        if (args.length == 0 || args.length == 1 && !args[0].equals("gui(off)")) { 
-//    	    if (view != null) { // in case init is called twice
-//        		view.setVisible(false);
-//        		view.dispose();
-//    	    }
-//            view  = new TartarusView(model);
-//            model.setView(view);
-//        }
-        
-        //updatePercepts();
-    	
-//        super.init(args);
-//        try {
-//			addPercept(ASSyntax.parseLiteral("percept(demo)"));
-//		} catch (ParseException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+        updatePercepts();    
     }
 
     private void updatePercepts() {
@@ -93,16 +73,7 @@ public class Tartarus extends Environment {
        // try {
         //    Thread.sleep(200);
        // } catch (Exception e) {}
-        //informAgsEnvironmentChanged();
         return true;
     }
 
-    /** Called before the end of MAS execution */
-//    @Override
-//    public void stop() {
-//    	if (view != null) {
-//    	    view.setVisible(false);
-//    	    view.dispose();
-//    	}
-//    }
 }
