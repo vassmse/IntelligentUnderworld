@@ -17,7 +17,7 @@ public class TartarusView extends GridWorldView{
 	public TartarusView(TartarusModel model) {
 		super(model, "Intelligent Underworld", 700);
 		tartarusModel = model;
-		defaultFont = new Font("Arial", Font.BOLD, 16); // change default font
+		defaultFont = new Font("Arial", Font.BOLD, 12); // change default font
 		setVisible(true);
 		repaint();
 	}
@@ -26,43 +26,67 @@ public class TartarusView extends GridWorldView{
 	@Override
 	public void draw(Graphics g, int x, int y, int object) {
 		Location lDead = tartarusModel.getAgPos(0);
-		super.drawAgent(g, x, y, Color.red, -1);
 		
 		switch(object) {
 			case TartarusModel.CERBERUS:
 				if(lDead.equals(tartarusModel.lCerberus)) {
 					super.drawAgent(g, x, y, Color.yellow, -1);
+					g.setColor(Color.black);
+    	            drawString(g, x, y, defaultFont, "CERBERUS");
 				}
-				g.setColor(Color.BLACK);
-				drawString(g, x, y, defaultFont, "Cerberus");
+				else {
+					super.drawAgent(g, x, y, Color.gray, -1);
+					g.setColor(Color.black);
+    	            drawString(g, x, y, defaultFont, "CERBERUS");
+				}				
 				break;
 			case TartarusModel.CLASSIFIER_CREATURE:
 				if(lDead.equals(tartarusModel.lClassifierCreature)) {
-					super.drawAgent(g, x, y, Color.yellow, -1);			
+					super.drawAgent(g, x, y, Color.yellow, -1);
+					g.setColor(Color.black);
+    	            drawString(g, x, y, defaultFont, "CLASSIFIER_CREATURE");
 				}
-				g.setColor(Color.BLACK);
-				drawString(g, x, y, defaultFont, "ClassifierCreature");
+				else {
+					super.drawAgent(g, x, y, Color.gray, -1);
+					g.setColor(Color.black);
+    	            drawString(g, x, y, defaultFont, "CLASSIFIER_CREATURE");
+				}				
 				break;
 			case TartarusModel.GATECHECKER_ELYSIUM:
 				if(lDead.equals(tartarusModel.lGateCheckerElysium)) {
-					super.drawAgent(g, x, y, Color.yellow, -1);			
+					super.drawAgent(g, x, y, Color.yellow, -1);
+					g.setColor(Color.black);
+    	            drawString(g, x, y, defaultFont, "GATECHECKER_ELYSIUM");
 				}
-				g.setColor(Color.BLACK);
-				drawString(g, x, y, defaultFont, "Elysium GateChecker");
+				else {
+					super.drawAgent(g, x, y, Color.gray, -1);
+					g.setColor(Color.black);
+    	            drawString(g, x, y, defaultFont, "GATECHECKER_ELYSIUM");
+				}				
 				break;
 			case TartarusModel.GATECHECKER_ASPHODELUS:
 				if(lDead.equals(tartarusModel.lGateCheckerAsphodelus)) {
-					super.drawAgent(g, x, y, Color.yellow, -1);			
+					super.drawAgent(g, x, y, Color.yellow, -1);
+					g.setColor(Color.black);
+    	            drawString(g, x, y, defaultFont, "GATECHECKER_ASPHODELUS");
 				}
-				g.setColor(Color.BLACK);
-				drawString(g, x, y, defaultFont, "Asphodelus GateChecker");
+				else {
+					super.drawAgent(g, x, y, Color.gray, -1);
+					g.setColor(Color.black);
+    	            drawString(g, x, y, defaultFont, "GATECHECKER_ASPHODELUS");
+				}				
 				break;
 			case TartarusModel.GATECHECKER_MOURNING:
 				if(lDead.equals(tartarusModel.lGateCheckerMourning)) {
-					super.drawAgent(g, x, y, Color.yellow, -1);			
+					super.drawAgent(g, x, y, Color.yellow, -1);
+					g.setColor(Color.black);
+    	            drawString(g, x, y, defaultFont, "GATECHECKER_MOURNING");
 				}
-				g.setColor(Color.BLACK);
-				drawString(g, x, y, defaultFont, "Mourning GateChecker");
+				else {
+					super.drawAgent(g, x, y, Color.gray, -1);
+					g.setColor(Color.black);
+    	            drawString(g, x, y, defaultFont, "GATECHECKER_MOURNING");
+				}				
 				break;
 			}
 		
@@ -70,6 +94,9 @@ public class TartarusView extends GridWorldView{
 	
     @Override
     public void drawAgent(Graphics g, int x, int y, Color c, int id) {
+    	super.drawAgent(g, x, y, Color.PINK, -1);
+    	g.setColor(Color.black);
+        drawString(g, x, y, defaultFont, "agent");
         Location lDead = tartarusModel.getAgPos(0);
         if (   !lDead.equals(tartarusModel.lCerberus) 
 			&& !lDead.equals(tartarusModel.lClassifierCreature) 

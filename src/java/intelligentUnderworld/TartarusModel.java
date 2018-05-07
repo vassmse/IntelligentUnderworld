@@ -7,11 +7,11 @@ import jason.environment.grid.Location;
 public class TartarusModel extends GridWorldModel{
 	
 	public static final int GSize = 7;
-	public static final int CERBERUS=2;
-	public static final int CLASSIFIER_CREATURE=4;
+	public static final int CERBERUS=128;
+	public static final int CLASSIFIER_CREATURE=64;
 	public static final int GATECHECKER_ELYSIUM=8;
-	public static final int GATECHECKER_ASPHODELUS=16;
-	public static final int GATECHECKER_MOURNING=32;
+	public static final int GATECHECKER_ASPHODELUS=32;
+	public static final int GATECHECKER_MOURNING=16;
 	
 	Location lCerberus = new Location(1,3);
 	Location lClassifierCreature = new Location(3,3);
