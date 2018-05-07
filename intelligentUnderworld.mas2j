@@ -2,7 +2,7 @@ MAS intelligentUnderworld {
 
 	infrastructure: Centralised
 
-	environment: Tartarus
+	environment: intelligentUnderworld.Tartarus
 
 	agents:		
 		asphodelus gateChecker.asl; //natural deads
