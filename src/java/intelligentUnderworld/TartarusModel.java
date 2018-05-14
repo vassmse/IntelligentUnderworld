@@ -50,27 +50,30 @@ public class TartarusModel extends GridWorldModel{
 	}
 	
     boolean moveTowards(Location dest) {
-       // Location r1 = getAgPos(0);
-//    	Location r1 = getAgPos(0);
-//        if (r1.x <= dest.x)        r1.x++;
-//        else if (r1.x >= dest.x)   r1.x--;
-//        if (r1.y <= dest.y)        r1.y++;
-//        else if (r1.y >= dest.y)   r1.y--;
-//        setAgPos(0, r1); // move the robot in the grid
-
-        // repaint the fridge and owner locations
-
-        setAgPos(0, dest); // move the robot in the grid
+    	Location r1 = getAgPos(0);
+        if (r1.x < dest.x)
+            r1.x++;
+        else if (r1.x > dest.x)
+            r1.x--;
+        if (r1.y < dest.y)
+            r1.y++;
+        else if (r1.y > dest.y)
+            r1.y--;
+        setAgPos(0, r1);
+        setAgPos(0,dest);
+       
         
-        // repaint the non-moving agents
-        if (view != null) {
-            view.update(lCerberus.x,lCerberus.y);
-            view.update(lClassifierCreature.x,lClassifierCreature.y);
-            view.update(lGateCheckerElysium.x,lGateCheckerElysium.y);
-            view.update(lGateCheckerAsphodelus.x,lGateCheckerAsphodelus.y);
-            view.update(lGateCheckerMourning.x,lGateCheckerMourning.y);
-        }
         return true;
+    }
+    
+    String waitMs(int ms)
+    {
+    	try {
+          Thread.sleep(500);
+          return "waiting "+ms+"ms";
+      } catch (Exception e) {
+    	  return "ERROR waiting "+ms+"ms";
+      }
     }
 
 }

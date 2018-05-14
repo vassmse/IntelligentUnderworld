@@ -12,25 +12,28 @@
 /* Plans */
 
 +!move(cerberus) : position(gate)	 
-	<- -position(gate);
+	<-	move_towards(cerberus);
+	   -position(gate);
 	   +position(cerberus);
 	   .print("Hi Cerberus, please let me in.");
-	   .send(cerberus,tell,visitor(in));
-	   move_towards(cerberus).
+	   .send(cerberus,tell,visitor(in));.
+	   
    
  +!move(classifier)[source(cerberus)] : position(cerberus)
-	<- -position(cerberus);
+	<-  move_towards(classifierCreature);
+	   -position(cerberus);
 	   +position(classifier);
 	   .print("Hi Classifier Creature, where should I go?");
-	   .send(classifierCreature,tell,visitor(status(good),degOfCert(0.7))); //todo:ezt honnan szedi?? GUIN kéne beállítani pl, más és más kül. halottaknál 	
-	   move_towards(classifierCreature).
+	   .send(classifierCreature,tell,visitor(status(bad),degOfCert(0.7)));. //todo:ezt honnan szedi?? GUIN kéne beállítani pl, más és más kül. halottaknál 	
+	   
    
 +!move(X)[source(classifierCreature)] : position(classifier)
-	<-  -position(classifier);
+	<-  move_towards(X); 
+	    -position(classifier);
 	    +position(X);
 	    .print("Hello ",X," Gate Checker. Let me in.");
-	    .send(X,achieve,letmein);
-	    move_towards(X);.	    
+	    .send(X,achieve,letmein);.
+	   
 	    
 	    
 +arrived(X):true
