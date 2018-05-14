@@ -96,7 +96,7 @@ public class TartarusView extends GridWorldView{
     public void drawAgent(Graphics g, int x, int y, Color c, int id) {
     	super.drawAgent(g, x, y, Color.PINK, -1);
     	g.setColor(Color.black);
-        drawString(g, x, y, defaultFont, "agent");
+        drawString(g, x, y, defaultFont, "dead_is_here");
         Location lDead = tartarusModel.getAgPos(0);
         if (   !lDead.equals(tartarusModel.lCerberus) 
 			&& !lDead.equals(tartarusModel.lClassifierCreature) 

@@ -18,6 +18,7 @@ public class TartarusModel extends GridWorldModel{
 	Location lGateCheckerElysium = new Location(5,1);
 	Location lGateCheckerAsphodelus = new Location(5,3);
 	Location lGateCheckerMourning = new Location(5,5);
+	Location lGate = new Location(0,3);
 
 	
 	
@@ -25,7 +26,7 @@ public class TartarusModel extends GridWorldModel{
 		//create a 7x7 grid with one mobile agent
 		super(GSize, GSize, 1);
 		
-		//initial location of dead (column 1, line 4)
+		//initial location of dead
 		//TODO 0 should mean the ag code of dead
 		setAgPos(0, 0, 3);
 		
@@ -44,9 +45,9 @@ public class TartarusModel extends GridWorldModel{
         Location r1 = getAgPos(0);
         if (r1.x < dest.x)        r1.x++;
         else if (r1.x > dest.x)   r1.x--;
-        if (r1.y < dest.y)        r1.y++;
+        else if (r1.y < dest.y)   r1.y++;
         else if (r1.y > dest.y)   r1.y--;
-        setAgPos(0, r1); // move the robot in the grid
+        setAgPos(0, dest); // move the robot in the grid
         
         // repaint the non-moving agents
         if (view != null) {
