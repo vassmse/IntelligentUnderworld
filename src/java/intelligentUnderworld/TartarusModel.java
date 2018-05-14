@@ -19,7 +19,15 @@ public class TartarusModel extends GridWorldModel{
 	Location lGateCheckerAsphodelus = new Location(5,3);
 	Location lGateCheckerMourning = new Location(5,5);
 	Location lGate = new Location(0,3);
-
+	Location lBtwCerbAndClass= new Location(2,3);
+	Location lBtwClassAndGateChecker1= new Location(4,1);	
+	Location lBtwClassAndGateChecker2= new Location(4,2);	
+	Location lBtwClassAndGateChecker3= new Location(4,3);	
+	Location lBtwClassAndGateChecker4= new Location(4,4);	
+	Location lBtwClassAndGateChecker5= new Location(4,5);	
+	Location lInElysium= new Location(6,1);	
+	Location lInAshodelus= new Location(6, 3);
+	Location lInMourning= new Location(6,5);
 	
 	
 	protected TartarusModel() {
@@ -42,11 +50,16 @@ public class TartarusModel extends GridWorldModel{
 	}
 	
     boolean moveTowards(Location dest) {
-        Location r1 = getAgPos(0);
-        if (r1.x < dest.x)        r1.x++;
-        else if (r1.x > dest.x)   r1.x--;
-        else if (r1.y < dest.y)   r1.y++;
-        else if (r1.y > dest.y)   r1.y--;
+       // Location r1 = getAgPos(0);
+//    	Location r1 = getAgPos(0);
+//        if (r1.x <= dest.x)        r1.x++;
+//        else if (r1.x >= dest.x)   r1.x--;
+//        if (r1.y <= dest.y)        r1.y++;
+//        else if (r1.y >= dest.y)   r1.y--;
+//        setAgPos(0, r1); // move the robot in the grid
+
+        // repaint the fridge and owner locations
+
         setAgPos(0, dest); // move the robot in the grid
         
         // repaint the non-moving agents

@@ -22,7 +22,7 @@
 	<- -position(cerberus);
 	   +position(classifier);
 	   .print("Hi Classifier Creature, where should I go?");
-	   .send(classifierCreature,tell,visitor(status(bad),degOfCert(0.4))); //todo:ezt honnan szedi?? GUIN kéne beállítani pl, más és más kül. halottaknál 	
+	   .send(classifierCreature,tell,visitor(status(good),degOfCert(0.7))); //todo:ezt honnan szedi?? GUIN kéne beállítani pl, más és más kül. halottaknál 	
 	   move_towards(classifierCreature).
    
 +!move(X)[source(classifierCreature)] : position(classifier)
