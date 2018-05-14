@@ -82,7 +82,7 @@ public class Tartarus extends Environment {
 				dest = model.lGateCheckerAsphodelus;
 			} else if (l.equals("elysium")) {
 				dest = model.lGateCheckerElysium;
-			}
+			} 
 			try {
 				result = model.moveTowards(dest);
 			} catch (Exception e) {
@@ -96,12 +96,12 @@ public class Tartarus extends Environment {
 			updatePercepts();
 
 		}
-		try {
-			Thread.sleep(500);
-			logger.info("waiting 500ms");
-		} catch (Exception e) {
-			logger.info("AJJAJ");
-		}
+		// try {
+		// Thread.sleep(800);
+		// logger.info("waiting 500ms");
+		// } catch (Exception e) {
+		// logger.info("AJJAJ");
+		// }
 		return result;
 	}
 }
