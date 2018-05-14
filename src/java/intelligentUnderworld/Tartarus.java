@@ -11,11 +11,11 @@ import java.util.logging.*;
 public class Tartarus extends Environment {
 
 	//TODO Common literals
-//	public static final Literal positionCerberus = Literal.parseLiteral("position(cerberus)");
-//	public static final Literal positionClassifier = Literal.parseLiteral("position(classifier)");
-//	public static final Literal positionElyisum = Literal.parseLiteral("position(elysium)");
-//	public static final Literal positionAshodelus = Literal.parseLiteral("position(ashodelus)");
-//	public static final Literal positionMourning = Literal.parseLiteral("position(mourning)");
+	public static final Literal positionCerberus = Literal.parseLiteral("position(cerberus)");
+	public static final Literal positionClassifier = Literal.parseLiteral("position(classifier)");
+	public static final Literal positionElyisum = Literal.parseLiteral("position(elysium)");
+	public static final Literal positionAshodelus = Literal.parseLiteral("position(ashodelus)");
+	public static final Literal positionMourning = Literal.parseLiteral("position(mourning)");
 	public static final Literal positionGate = Literal.parseLiteral("position(gate)");	
 	
     private Logger logger = Logger.getLogger("intelligentUnderworld."+Tartarus.class.getName());
@@ -40,22 +40,27 @@ public class Tartarus extends Environment {
     	if(lDead.equals(model.lGate)) {
     		addPercept(positionGate);
     	}
-//    	
-//		if(lDead.equals(model.lCerberus)) {
-//			addPercept(positionCerberus);
-//		}
-//		if(lDead.equals(model.lClassifierCreature)) {
-//			addPercept(positionClassifier);
-//		}
-//		if(lDead.equals(model.lGateCheckerAsphodelus)) {
-//			addPercept(positionAshodelus);
-//		}
-//		if(lDead.equals(model.lGateCheckerElysium)) {
-//			addPercept(positionElyisum);
-//		}
-//		if(lDead.equals(model.lGateCheckerMourning)) {
-//			addPercept(positionMourning);
-//		}
+    	
+		if(lDead.equals(model.lCerberus)) {
+			addPercept(positionCerberus);
+			removePercept(positionGate);
+		}
+		if(lDead.equals(model.lClassifierCreature)) {
+			addPercept(positionClassifier);
+			removePercept(positionCerberus);
+		}
+		if(lDead.equals(model.lGateCheckerAsphodelus)) {
+			addPercept(positionAshodelus);
+			removePercept(positionClassifier);
+		}
+		if(lDead.equals(model.lGateCheckerElysium)) {
+			addPercept(positionElyisum);
+			removePercept(positionClassifier);
+		}
+		if(lDead.equals(model.lGateCheckerMourning)) {
+			addPercept(positionMourning);
+			removePercept(positionClassifier);
+		}
 		
 	}
 
@@ -74,7 +79,11 @@ public class Tartarus extends Environment {
                 dest = model.lClassifierCreature;
             } else if (l.equals("mourning")) {
                 dest = model.lGateCheckerMourning;
-            }
+	        } else if (l.equals("asphodelus")) {
+	            dest = model.lGateCheckerAsphodelus;
+		    } else if (l.equals("elysium")) {
+		        dest = model.lGateCheckerElysium;
+		    }
 	            try {
 	                result = model.moveTowards(dest);
 	            } catch (Exception e) {
@@ -87,7 +96,7 @@ public class Tartarus extends Environment {
 	        if (result) {
 	            updatePercepts();
 	            try {
-	                Thread.sleep(100);
+	                Thread.sleep(1000);
 	            } catch (Exception e) {}
 	        }
 	        return result;
