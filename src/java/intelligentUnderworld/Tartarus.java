@@ -35,6 +35,7 @@ public class Tartarus extends Environment {
     private void updatePercepts() {
     	clearPercepts();
     	
+    	
     	Location lDead = model.getAgPos(0);
     	
     	if(lDead.equals(model.lGate)) {
@@ -62,8 +63,7 @@ public class Tartarus extends Environment {
 	@Override
     public boolean executeAction(String agName, Structure action) {
 		logger.info(agName+" doing: "+ action);
-		boolean result = false;
-		 
+		boolean result = false;		
 
 		if (action.getFunctor().equals("move_towards")) {
             String l = action.getTerm(0).toString();
@@ -87,9 +87,11 @@ public class Tartarus extends Environment {
 	        if (result) {
 	            updatePercepts();
 	            try {
-	                Thread.sleep(100);
+	                Thread.sleep(200);
 	            } catch (Exception e) {}
 	        }
+	        
+	        
 	        return result;
 	    }
 }
