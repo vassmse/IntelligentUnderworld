@@ -30,6 +30,7 @@ public class Tartarus extends Environment {
 		view = new TartarusView(model);
 		model.setView(view);
 		updatePercepts();
+		view.setEnv(this);
 	}
 
 	private void updatePercepts() {
@@ -103,5 +104,12 @@ public class Tartarus extends Environment {
 		// logger.info("AJJAJ");
 		// }
 		return result;
+	}
+
+
+	public void startAgent(int degOfCert, String agentState) {
+		// TODO Auto-generated method stub
+		logger.info(degOfCert + agentState);
+		
 	}
 }

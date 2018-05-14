@@ -7,6 +7,9 @@ import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import java.util.Hashtable;
 
 import javax.swing.BorderFactory;
@@ -17,12 +20,20 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 
+
 import jason.environment.grid.GridWorldView;
 import jason.environment.grid.Location;
+
 
 public class TartarusView extends GridWorldView{
 
 	private static final long serialVersionUID = 1L;
+	
+	Tartarus tartarusEnv= null;
+	
+	public void setEnv(Tartarus env) {
+		this.tartarusEnv= env;
+	}
 		
 	TartarusModel tartarusModel;
 	
@@ -35,7 +46,7 @@ public class TartarusView extends GridWorldView{
 	}
 	
 	JLabel    jlMouseLoc;
-    JComboBox agentState;
+    JComboBox<String> agentState;
     JSlider   degOfCert;
     JButton startButton;
 	
@@ -43,7 +54,7 @@ public class TartarusView extends GridWorldView{
 	public void initComponents(int width)
 	{
 		super.initComponents(width);
-        agentState = new JComboBox();
+        agentState = new JComboBox<String>();
         
         agentState.addItem("good");
         agentState.addItem("natural");
@@ -91,54 +102,33 @@ public class TartarusView extends GridWorldView{
         s.add(BorderLayout.WEST, args);
         getContentPane().add(BorderLayout.SOUTH, s);
 
-        // Events handling
-//        jSpeed.addChangeListener(new ChangeListener() {
+//         Events handling
+//        degOfCert.addChangeListener(new ChangeListener() {
 //            public void stateChanged(ChangeEvent e) {
-//                if (env != null) {
-//                    env.setSleep((int)jSpeed.getValue());
+//                if (tartarusEnv != null) {
+//                	tartarusEnv.setDegOfCert((int)degOfCert.getValue());
 //                }
 //            }
 //        });
 //
-//        scenarios.addItemListener(new ItemListener() {
+//        agentState.addItemListener(new ItemListener() {
 //            public void itemStateChanged(ItemEvent ievt) {
-//                int w = ((Integer)scenarios.getSelectedItem()).intValue();
-//                if (env != null && env.getSimId() != w) {
-//                    env.endSimulation();
-//                    env.initWorld(w);
+//                int w = ((Integer)agentState.getSelectedItem()).intValue();
+//                if (tartarusEnv != null && env.getSimId() != w) {
+//                	tartarusEnv.setAgentState();
+//
 //                }
 //            }
 //        });
 //
-//        getCanvas().addMouseListener(new MouseListener() {
-//            public void mouseClicked(MouseEvent e) {
-//                int col = e.getX() / cellSizeW;
-//                int lin = e.getY() / cellSizeH;
-//                if (col >= 0 && lin >= 0 && col < getModel().getWidth() && lin < getModel().getHeight()) {
-//                    WorldModel wm = (WorldModel)model;
-//                    wm.add(WorldModel.GOLD, col, lin);
-//                    wm.setInitialNbGolds(wm.getInitialNbGolds()+1);
-//                    update(col, lin);
-//                    udpateCollectedGolds();
-//                }
-//            }
-//            public void mouseExited(MouseEvent e) {}
-//            public void mouseEntered(MouseEvent e) {}
-//            public void mousePressed(MouseEvent e) {}
-//            public void mouseReleased(MouseEvent e) {}
+
 //        });
-//
-//        getCanvas().addMouseMotionListener(new MouseMotionListener() {
-//            public void mouseDragged(MouseEvent e) { }
-//            public void mouseMoved(MouseEvent e) {
-//                int col = e.getX() / cellSizeW;
-//                int lin = e.getY() / cellSizeH;
-//                if (col >= 0 && lin >= 0 && col < getModel().getWidth() && lin < getModel().getHeight()) {
-//                    jlMouseLoc.setText(col+","+lin+")");
-//                }
-//            }
-//        });
-		
+        startButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //your actions
+            	tartarusEnv.startAgent((int)degOfCert.getValue(), agentState.getSelectedItem().toString());
+            }
+        });
 	}
 	
 	//draw application objects
