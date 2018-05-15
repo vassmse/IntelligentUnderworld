@@ -102,27 +102,6 @@ public class TartarusView extends GridWorldView{
         s.add(BorderLayout.WEST, args);
         getContentPane().add(BorderLayout.SOUTH, s);
 
-//         Events handling
-//        degOfCert.addChangeListener(new ChangeListener() {
-//            public void stateChanged(ChangeEvent e) {
-//                if (tartarusEnv != null) {
-//                	tartarusEnv.setDegOfCert((int)degOfCert.getValue());
-//                }
-//            }
-//        });
-//
-//        agentState.addItemListener(new ItemListener() {
-//            public void itemStateChanged(ItemEvent ievt) {
-//                int w = ((Integer)agentState.getSelectedItem()).intValue();
-//                if (tartarusEnv != null && env.getSimId() != w) {
-//                	tartarusEnv.setAgentState();
-//
-//                }
-//            }
-//        });
-//
-
-//        });
         startButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //your actions

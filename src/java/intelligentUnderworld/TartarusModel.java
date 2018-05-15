@@ -18,15 +18,6 @@ public class TartarusModel extends GridWorldModel {
 	Location lGateCheckerAsphodelus = new Location(5, 3);
 	Location lGateCheckerMourning = new Location(5, 5);
 	Location lGate = new Location(0, 3);
-	Location lBtwCerbAndClass = new Location(2, 3);
-	Location lBtwClassAndGateChecker1 = new Location(4, 1);
-	Location lBtwClassAndGateChecker2 = new Location(4, 2);
-	Location lBtwClassAndGateChecker3 = new Location(4, 3);
-	Location lBtwClassAndGateChecker4 = new Location(4, 4);
-	Location lBtwClassAndGateChecker5 = new Location(4, 5);
-	Location lInElysium = new Location(6, 1);
-	Location lInAshodelus = new Location(6, 3);
-	Location lInMourning = new Location(6, 5);
 
 	protected TartarusModel() {
 		// create a 7x7 grid with one mobile agent
@@ -57,7 +48,6 @@ public class TartarusModel extends GridWorldModel {
 			r1.y++;
 		else if (r1.y > dest.y)
 			r1.y--;
-			
 
 		try {
 			Thread.sleep(200);
@@ -72,24 +62,22 @@ public class TartarusModel extends GridWorldModel {
 		}
 
 		setAgPos(0, dest);
-		
+
 		try {
 			Thread.sleep(500);
 		} catch (Exception e) {
 		}
-		
-		if(dest.x==5)
-		{
+
+		if (dest.x == 5) {
 			try {
 				Thread.sleep(200);
 			} catch (Exception e) {
 			}
-			
-			r1.x=6;
-			r1.y=dest.y;
+
+			r1.x = 6;
+			r1.y = dest.y;
 			setAgPos(0, r1);
 		}
-			
 
 		return true;
 	}

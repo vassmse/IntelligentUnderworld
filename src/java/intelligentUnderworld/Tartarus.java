@@ -10,7 +10,6 @@ import java.util.logging.*;
 
 public class Tartarus extends Environment {
 
-	// TODO Common literals
 	public static final Literal positionCerberus = Literal.parseLiteral("position(cerberus)");
 	public static final Literal positionClassifier = Literal.parseLiteral("position(classifier)");
 	public static final Literal positionElyisum = Literal.parseLiteral("position(elysium)");
@@ -19,16 +18,12 @@ public class Tartarus extends Environment {
 	public static final Literal positionGate = Literal.parseLiteral("position(gate)");
 	public static final Literal positionNowhere = Literal.parseLiteral("position(nowhere)");
 	public static final Literal goalMove = Literal.parseLiteral("move(cerberus)");
-	
+	public Literal statusAgent = null;
+	public Literal certanity = null;
+
 	public double degOfCert = 8;
 	public String agentState = "good";
-	
-	public Literal statusAgent = null;
-	
-	
-//	public Literal whereTo = Literal.parseLiteral(".send(classifierCreature,tell,visitor(status("+agentState+"),degOfCert("+degOfCert+")));");
 
-	
 	private Logger logger = Logger.getLogger("intelligentUnderworld." + Tartarus.class.getName());
 
 	TartarusModel model = null; // the model of the grid
@@ -40,30 +35,25 @@ public class Tartarus extends Environment {
 		model = new TartarusModel();
 		view = new TartarusView(model);
 		model.setView(view);
-		//updatePercepts();
 		view.setEnv(this);
 	}
 
 	private void updatePercepts() {
-		logger.info("updateFV");
 		clearPercepts();
 
 		Location lDead = model.getAgPos(0);
-		
-		
+
 		if (lDead.equals(model.lGate)) {
-			removePercept("dead", positionNowhere);	
-			addPercept("dead",positionGate);
+			removePercept("dead", positionNowhere);
+			addPercept("dead", positionGate);
 			addPercept("dead", goalMove);
-			logger.info("gate");
-			
 		}
 
 		if (lDead.equals(model.lCerberus)) {
-			statusAgent = Literal.parseLiteral("status("+agentState+")");
+			statusAgent = Literal.parseLiteral("status(" + agentState + ")");
+			certanity = Literal.parseLiteral("degOfCert(" + degOfCert + ")");
 			addPercept(statusAgent);
-			logger.info(statusAgent.toString());
-			logger.info(agentState);
+			addPercept(certanity);
 		}
 	}
 
@@ -85,21 +75,15 @@ public class Tartarus extends Environment {
 				dest = model.lGateCheckerAsphodelus;
 			} else if (l.equals("elysium")) {
 				dest = model.lGateCheckerElysium;
-			} 
+			}
 			try {
 				result = model.moveTowards(dest);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-//		} else if(action.getFunctor().equals("initAbilities")){
-//			String agentStatus = action.getTerm(0).toString();
-//			String degOfCert = action.getTerm(1).toString();
-//			
-//		}
-//		
+
 		}
-		
-		
+
 		else {
 			logger.info("Failed to execute action " + action);
 		}
@@ -112,11 +96,10 @@ public class Tartarus extends Environment {
 		return result;
 	}
 
-
 	public void startAgent(double degOfCert, String agentState) {
-		this.agentState=agentState;
-		this.degOfCert=degOfCert/10;
+		this.agentState = agentState;
+		this.degOfCert = degOfCert / 10;
 		updatePercepts();
-		
+
 	}
 }
