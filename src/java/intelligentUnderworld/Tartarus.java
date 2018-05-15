@@ -10,11 +10,6 @@ import java.util.logging.*;
 
 public class Tartarus extends Environment {
 
-	public static final Literal positionCerberus = Literal.parseLiteral("position(cerberus)");
-	public static final Literal positionClassifier = Literal.parseLiteral("position(classifier)");
-	public static final Literal positionElyisum = Literal.parseLiteral("position(elysium)");
-	public static final Literal positionAshodelus = Literal.parseLiteral("position(ashodelus)");
-	public static final Literal positionMourning = Literal.parseLiteral("position(mourning)");
 	public static final Literal positionGate = Literal.parseLiteral("position(gate)");
 	public static final Literal positionNowhere = Literal.parseLiteral("position(nowhere)");
 	public static final Literal goalMove = Literal.parseLiteral("move(cerberus)");
