@@ -17,7 +17,18 @@ public class Tartarus extends Environment {
 	public static final Literal positionAshodelus = Literal.parseLiteral("position(ashodelus)");
 	public static final Literal positionMourning = Literal.parseLiteral("position(mourning)");
 	public static final Literal positionGate = Literal.parseLiteral("position(gate)");
+	public static final Literal positionNowhere = Literal.parseLiteral("position(nowhere)");
+	public static final Literal goalMove = Literal.parseLiteral("move(cerberus)");
 
+
+
+	
+	public double degOfCert = 8;
+	public String agentState = "good";
+	
+	public final Literal whereTo = Literal.parseLiteral(".send(classifierCreature,tell,visitor(status("+agentState+"),degOfCert("+degOfCert+")));");
+
+	
 	private Logger logger = Logger.getLogger("intelligentUnderworld." + Tartarus.class.getName());
 
 	TartarusModel model = null; // the model of the grid
@@ -29,39 +40,46 @@ public class Tartarus extends Environment {
 		model = new TartarusModel();
 		view = new TartarusView(model);
 		model.setView(view);
-		updatePercepts();
+		//updatePercepts();
 		view.setEnv(this);
 	}
 
 	private void updatePercepts() {
+		logger.info("updateFV");
 		clearPercepts();
 
 		Location lDead = model.getAgPos(0);
-
+		
+		
 		if (lDead.equals(model.lGate)) {
-			addPercept(positionGate);
+			removePercept("dead", positionNowhere);	
+			addPercept("dead",positionGate);
+			addPercept("dead", goalMove);
+			//logger.info(getPercepts("dead").toString());
+			logger.info("gate");
+			
 		}
 
-		if (lDead.equals(model.lCerberus)) {
-			addPercept(positionCerberus);
-			removePercept(positionGate);
-		}
-		if (lDead.equals(model.lClassifierCreature)) {
-			addPercept(positionClassifier);
-			removePercept(positionCerberus);
-		}
-		if (lDead.equals(model.lGateCheckerAsphodelus)) {
-			addPercept(positionAshodelus);
-			removePercept(positionClassifier);
-		}
-		if (lDead.equals(model.lGateCheckerElysium)) {
-			addPercept(positionElyisum);
-			removePercept(positionClassifier);
-		}
-		if (lDead.equals(model.lGateCheckerMourning)) {
-			addPercept(positionMourning);
-			removePercept(positionClassifier);
-		}
+//		if (lDead.equals(model.lCerberus)) {
+//			//addPercept(whereTo);
+//			logger.info(whereTo.toString());
+//		}
+//		if (lDead.equals(model.lClassifierCreature)) {
+//			addPercept(positionClassifier);
+//			removePercept(positionCerberus);
+//		}
+//		if (lDead.equals(model.lGateCheckerAsphodelus)) {
+//			addPercept(positionAshodelus);
+//			removePercept(positionClassifier);
+//		}
+//		if (lDead.equals(model.lGateCheckerElysium)) {
+//			addPercept(positionElyisum);
+//			removePercept(positionClassifier);
+//		}
+//		if (lDead.equals(model.lGateCheckerMourning)) {
+//			addPercept(positionMourning);
+//			removePercept(positionClassifier);
+//		}
 
 	}
 
@@ -89,7 +107,16 @@ public class Tartarus extends Environment {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else {
+//		} else if(action.getFunctor().equals("initAbilities")){
+//			String agentStatus = action.getTerm(0).toString();
+//			String degOfCert = action.getTerm(1).toString();
+//			
+//		}
+//		
+		}
+		
+		
+		else {
 			logger.info("Failed to execute action " + action);
 		}
 
@@ -107,9 +134,11 @@ public class Tartarus extends Environment {
 	}
 
 
-	public void startAgent(int degOfCert, String agentState) {
+	public void startAgent(double degOfCert, String agentState) {
 		// TODO Auto-generated method stub
-		logger.info(degOfCert + agentState);
+		this.agentState=agentState;
+		this.degOfCert=degOfCert/10;
+		updatePercepts();
 		
 	}
 }
