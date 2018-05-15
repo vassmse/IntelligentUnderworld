@@ -6,7 +6,8 @@
 //position(gate).
 position(nowhere).
 ~arrived(destination).
-
+status(natural).
+degOfCert(0.7).
 
 /* Initial goals */
 !move(cerberus).
@@ -15,10 +16,6 @@ position(nowhere).
 
 +!move(cerberus) : position(nowhere)	
 <- .print("Waiting... Am I good?");.
-//	+position(gate);
-//	-position(nowhere);
-//	+move(cerberus);.
-//	
 	
 +move(cerberus) : position(gate)	 
 	<-	move_towards(cerberus);
@@ -28,12 +25,17 @@ position(nowhere).
 	   .send(cerberus,tell,visitor(in));.
 	   
    
- +!move(classifier)[source(cerberus)] : position(cerberus)
+ +!move(classifier)[source(cerberus)] : position(cerberus) & status(S) & degOfCert(D)
 	<-  move_towards(classifierCreature);
 	   -position(cerberus);
 	   +position(classifier);
+<<<<<<< HEAD
 	   .print("Hi Classifier Creature, where should I go?");  
        .send(classifierCreature,tell,visitor(status(A),degOfCert(B)));. //todo:ezt honnan szedi?? GUIN kéne beállítani pl, más és más kül. halottaknál 	
+=======
+	   .print("Hi Classifier Creature, where should I go?");
+	  .send(classifierCreature,tell,visitor(status(S),degOfCert(D)));. 	
+>>>>>>> 9bf915d8ba7ad7093150591130cd0ccaf0aa1100
 	   
    
 +!move(X)[source(classifierCreature)] : position(classifier)

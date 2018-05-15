@@ -73,6 +73,10 @@ public class TartarusModel extends GridWorldModel {
 
 		setAgPos(0, dest);
 		
+		try {
+			Thread.sleep(500);
+		} catch (Exception e) {
+		}
 		
 		if(dest.x==5)
 		{

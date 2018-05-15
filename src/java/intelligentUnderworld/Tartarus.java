@@ -65,24 +65,6 @@ public class Tartarus extends Environment {
 			logger.info(statusAgent.toString());
 			logger.info(agentState);
 		}
-		
-//		if (lDead.equals(model.lClassifierCreature)) {
-//			addPercept(positionClassifier);
-//			removePercept(positionCerberus);
-//		}
-//		if (lDead.equals(model.lGateCheckerAsphodelus)) {
-//			addPercept(positionAshodelus);
-//			removePercept(positionClassifier);
-//		}
-//		if (lDead.equals(model.lGateCheckerElysium)) {
-//			addPercept(positionElyisum);
-//			removePercept(positionClassifier);
-//		}
-//		if (lDead.equals(model.lGateCheckerMourning)) {
-//			addPercept(positionMourning);
-//			removePercept(positionClassifier);
-//		}
-
 	}
 
 	@Override
@@ -126,18 +108,12 @@ public class Tartarus extends Environment {
 			updatePercepts();
 
 		}
-		// try {
-		// Thread.sleep(800);
-		// logger.info("waiting 500ms");
-		// } catch (Exception e) {
-		// logger.info("AJJAJ");
-		// }
+
 		return result;
 	}
 
 
 	public void startAgent(double degOfCert, String agentState) {
-		// TODO Auto-generated method stub
 		this.agentState=agentState;
 		this.degOfCert=degOfCert/10;
 		updatePercepts();
