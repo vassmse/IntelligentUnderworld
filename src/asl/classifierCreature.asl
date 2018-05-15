@@ -1,11 +1,10 @@
 // Agent classifierCreature in project intelligentHell
 // The Classifier Creature decide which person goes to which section of hell
 
-
 /* Plans */
 
 //GOOD: Dead thinks that itself is good
-+visitor(status(X),degOfCert(D))[source(dead)]: visitor(status(good),degOfCert(D)) & D>0.5
++visitor(status(X),degOfCert(D))[source(dead)]: (visitor(status(good),degOfCert(D)) & D>0.5)
 	<- .print("You should go to the ELYSIUM section, you are a GOOD dead.");
 	   .send(dead, achieve, move(elysium));
 	   .send(dead, tell, status(good));

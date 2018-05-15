@@ -19,14 +19,14 @@ public class Tartarus extends Environment {
 	public static final Literal positionGate = Literal.parseLiteral("position(gate)");
 	public static final Literal positionNowhere = Literal.parseLiteral("position(nowhere)");
 	public static final Literal goalMove = Literal.parseLiteral("move(cerberus)");
-
-
-
 	
 	public double degOfCert = 8;
 	public String agentState = "good";
 	
-	public final Literal whereTo = Literal.parseLiteral(".send(classifierCreature,tell,visitor(status("+agentState+"),degOfCert("+degOfCert+")));");
+	public Literal statusAgent = null;
+	
+	
+//	public Literal whereTo = Literal.parseLiteral(".send(classifierCreature,tell,visitor(status("+agentState+"),degOfCert("+degOfCert+")));");
 
 	
 	private Logger logger = Logger.getLogger("intelligentUnderworld." + Tartarus.class.getName());
@@ -55,15 +55,17 @@ public class Tartarus extends Environment {
 			removePercept("dead", positionNowhere);	
 			addPercept("dead",positionGate);
 			addPercept("dead", goalMove);
-			//logger.info(getPercepts("dead").toString());
 			logger.info("gate");
 			
 		}
 
-//		if (lDead.equals(model.lCerberus)) {
-//			//addPercept(whereTo);
-//			logger.info(whereTo.toString());
-//		}
+		if (lDead.equals(model.lCerberus)) {
+			statusAgent = Literal.parseLiteral("status("+agentState+")");
+			addPercept(statusAgent);
+			logger.info(statusAgent.toString());
+			logger.info(agentState);
+		}
+		
 //		if (lDead.equals(model.lClassifierCreature)) {
 //			addPercept(positionClassifier);
 //			removePercept(positionCerberus);
