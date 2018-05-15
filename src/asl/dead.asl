@@ -4,14 +4,20 @@
 /* Initial beliefs and rules */
 
 //position(gate).
+position(nowhere).
 ~arrived(destination).
+status(natural).
+degOfCert(0.7).
 
 /* Initial goals */
 !move(cerberus).
 
 /* Plans */
 
-+!move(cerberus) : position(gate)	 
++!move(cerberus) : position(nowhere)	
+<- .print("Waiting... Am I good?");.
+	
++move(cerberus) : position(gate)	 
 	<-	move_towards(cerberus);
 	   -position(gate);
 	   +position(cerberus);
@@ -19,12 +25,12 @@
 	   .send(cerberus,tell,visitor(in));.
 	   
    
- +!move(classifier)[source(cerberus)] : position(cerberus)
+ +!move(classifier)[source(cerberus)] : position(cerberus) & status(S) & degOfCert(D)
 	<-  move_towards(classifierCreature);
 	   -position(cerberus);
 	   +position(classifier);
 	   .print("Hi Classifier Creature, where should I go?");
-	   .send(classifierCreature,tell,visitor(status(bad),degOfCert(0.7)));. //todo:ezt honnan szedi?? GUIN kéne beállítani pl, más és más kül. halottaknál 	
+	  .send(classifierCreature,tell,visitor(status(S),degOfCert(D)));. 	
 	   
    
 +!move(X)[source(classifierCreature)] : position(classifier)
